@@ -53,7 +53,7 @@ Compile the modules with Oracle's address by
 aptos move compile --package-dir . --named-addresses Oracle=0x{oracle_address_here}
 ```
 
-Copy build/Examples/bytecode_modules/value.mv to the same folder as this tutorial project code.
+Copy **build/Examples/bytecode_modules/value.mv** to the same folder as this tutorial project code.
 
 At this point the outcome should show, that the value was changed a few times. All the transactions must be seen on the Aptos Explorer
 
