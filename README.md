@@ -39,7 +39,11 @@ Also, move **oracle.py**  according to the following path:
 
 ### Step 2 Initialize and interact with the Move module
 
-Install the required libraries: pip3 install -r requirements.txt.
+Install the required libraries: 
+
+```
+pip3 install -r requirements.txt.
+```
 
 Execute the example in /aptos-core/developer-docs-site/static/examples/python/ 
 
