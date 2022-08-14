@@ -42,7 +42,7 @@ Also, move **oracle.py**  according to the following path:
 Install the required libraries: 
 
 ```
-pip3 install -r requirements.txt.
+pip3 install -r requirements.txt
 ```
 
 Execute the example in /aptos-core/developer-docs-site/static/examples/python/ 
