@@ -39,16 +39,16 @@ Also, move **oracle.py**  according to the following path:
 
 ### Step 2 Initialize and interact with the Move module
 
-Install the required libraries: 
+Install the required libraries in **/aptos-core/developer-docs-site/static/examples/python/**  
 
 ```
 pip3 install -r requirements.txt
 ```
 
-Execute the example in /aptos-core/developer-docs-site/static/examples/python/ 
+Execute the example in **/aptos-core/developer-docs-site/static/examples/python/** 
 
 ```
-python3 orace.py value.mv
+python3 oracle.py value.mv
 ```
 
 Compile the modules with Oracle's address by
@@ -57,10 +57,10 @@ Compile the modules with Oracle's address by
 aptos move compile --package-dir . --named-addresses Oracle=0x{oracle_address_here}
 ```
 
-Copy **build/Examples/bytecode_modules/value.mv** to the same folder as this tutorial project code.
+Copy **build/Examples/bytecode_modules/value.mv** to the same folder as this tutorial project code and press enter in the terminal.
 
 At this point the outcome should show, that the value was changed a few times. All the transactions must be seen on the Aptos Explorer
 
 ---
 
-Example oracle transactions on the [Aptos Explorer](https://aptos-explorer.netlify.app/account/0xbb6bff0f52101a226f847d451b738f6c7d6be2ab11bf3a968c4e96bf0154cd5c)
+Example oracle transactions with on the [Aptos Explorer](https://aptos-explorer.netlify.app/account/0xbb6bff0f52101a226f847d451b738f6c7d6be2ab11bf3a968c4e96bf0154cd5c)
