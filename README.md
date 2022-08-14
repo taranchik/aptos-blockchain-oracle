@@ -28,7 +28,7 @@ cargo install --git https://github.com/aptos-labs/aptos-core.git aptos
 
 ### Step 1 Download the current repo and move files
 
-Move oracle folder to aptos-core API according to the following path: 
+Move **oracle** folder to aptos-core API according to the following path: 
 ```
 /aptos-core/aptos-move/move-examples/
 ```
