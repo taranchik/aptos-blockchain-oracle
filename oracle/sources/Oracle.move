@@ -1,40 +1,38 @@
 module Oracle::value {
-    use std::string;
     use std::error;
     use aptos_std::event;
     use std::signer;
 
-    struct ValueHolder has key {
-        value: string::String,
-        value_change_events: event::EventHandle<ValueChangeEvent>,
+    struct ValueHolder<T: key> has key {
+        value: T,
+        value_change_events: event::EventHandle<ValueChangeEvent<T>>,
     }
 
-    struct ValueChangeEvent has drop, store {
-        from_value: string::String,
-        to_value: string::String,
+    struct ValueChangeEvent<T: drop + store> has drop, store {
+        from_value: T,
+        to_value: T,
     }
 
     /// There is no value present
     const ENO_VALUE: u64 = 0;
 
-    public fun get_value(addr: address): string::String acquires ValueHolder {
-        assert!(exists<ValueHolder>(addr), error::not_found(ENO_VALUE));
-        *&borrow_global<ValueHolder>(addr).value
+    public fun get_value<T: key + store + copy>(addr: address): T acquires ValueHolder {
+        assert!(exists<ValueHolder<T>>(addr), error::not_found(ENO_VALUE));
+        *&borrow_global<ValueHolder<T>>(addr).value
     }
 
-    public entry fun set_value(account: signer, value_bytes: vector<u8>)
+    public entry fun set_value<T: key + store + drop + copy>(account: signer, value: T)
     acquires ValueHolder {
-        let value = string::utf8(value_bytes);
         let account_addr = signer::address_of(&account);
-        if (!exists<ValueHolder>(account_addr)) {
-            move_to(&account, ValueHolder {
+        if (!exists<ValueHolder<T>>(account_addr)) {
+            move_to(&account, ValueHolder<T> {
                 value,
-                value_change_events: event::new_event_handle<ValueChangeEvent>(&account),
+                value_change_events: event::new_event_handle<ValueChangeEvent<T>>(&account),
             })
         } else {
-            let old_value_holder = borrow_global_mut<ValueHolder>(account_addr);
+            let old_value_holder = borrow_global_mut<ValueHolder<T>>(account_addr);
             let from_value = *&old_value_holder.value;
-            event::emit_event(&mut old_value_holder.value_change_events, ValueChangeEvent {
+            event::emit_event(&mut old_value_holder.value_change_events, ValueChangeEvent<T> {
                 from_value,
                 to_value: copy value,
             });
