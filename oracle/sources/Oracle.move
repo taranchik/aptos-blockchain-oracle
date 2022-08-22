@@ -3,12 +3,12 @@ module Oracle::value {
     use aptos_std::event;
     use std::signer;
 
-    struct ValueHolder<T: key> has key {
+    struct ValueHolder<T> has key {
         value: T,
         value_change_events: event::EventHandle<ValueChangeEvent<T>>,
     }
 
-    struct ValueChangeEvent<T: drop + store> has drop, store {
+    struct ValueChangeEvent<T> has drop, store {
         from_value: T,
         to_value: T,
     }
